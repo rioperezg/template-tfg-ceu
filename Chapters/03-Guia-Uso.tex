@@ -1,0 +1,190 @@
+\chapter[Instrucciones plantilla]{Instrucciones para usar la plantilla del TFG}
+\label{cp:user-guide}
+
+Si planeas usar esta plantilla, lee este capítulo con atención. Aquí se explica qué archivos y directorios componen la plantilla y cuáles deberías editar. La plantilla está organizada en varios directorios y archivos —entre ellos \texttt{TFG.tex} y \texttt{CEUTFG.cls}—. El \autoref{tab:file-structure} muestra la estructura de directorios y se indica si es necesario modificar cada uno de ellos.
+
+\begin{table}[!htpb]
+    \setlength{\extrarowheight}{2pt}
+    \caption[Estructura de directorios y ficheros]{Estructura de directorios y ficheros de esta plantilla.}
+    \label{tab:file-structure}
+    \begin{tabularx}{\textwidth}{lcX}
+        \toprule
+        \\[-1.5\normalbaselineskip]
+        \textbf{Directorio} & \textbf{Modificable} & \textbf{Descripción} \\ [0em]
+        \midrule
+        \textit{Bibliography} & $\checkmark$ & Este directorio contiene el archivo de bibliografía utilizado para gestionar las referencias a lo largo del documento. \\
+        \textit{Chapters} & $\checkmark$ & Este directorio contiene los capítulos individuales de la tesis, lo que facilita trabajar en ellos por separado. \\
+        \textit{Code} & $\checkmark$ & Este directorio contiene los ejemplos de código y los scripts relevantes del trabajo. \\
+        \textit{Configurations} & - & Este directorio contiene todos los archivos de configuración requeridos para la plantilla, como la disposición y la configuración de estilo. \\
+        \textit{Img} & $\checkmark$ & Este directorio contiene todas las imágenes referenciadas en el documento. \\
+        \textit{Matter} & - & Este directorio contiene material preliminar del documento, incluida la portada, la declaración de derechos de autor y el glosario, etc. \\
+        \textit{Metadata} & $\checkmark$ & Este directorio contiene el archivo de metadatos, donde se pueden personalizar detalles clave del documento, como el autor, el título y el director. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+
+\medskip
+
+Es importante señalar que los archivos están organizados según una convención de nombres específica, que debe ser \textbf{respetada} y \textbf{mantenida}. La convención consiste en un valor numérico ascendente de dos dígitos, seguido por un guion y el nombre del archivo comenzando por mayúscula. Se recomienda que el nombre sea de una sola palabra; si se requieren varias, sepáralas con un guion y usa mayúscula para cada término.
+
+\begin{nota}
+Aunque el \autoref{tab:file-structure} indica que el directorio \textit{Matter} no es modificable, dos archivos dentro de ese directorio deben ser alterados cuando sea necesario: \texttt{04-Glossary.tex} y \texttt{05-Acronyms.tex}. Aunque los nombres son bastante autoexplicativos, estos archivos deben contener las entradas del glosario y de los acrónimos, respectivamente.
+\end{nota}
+
+Los dos archivos mencionados anteriormente, \texttt{TFG.tex} y \texttt{CEUTFG.cls}, deben usarse con precaución. El archivo principal \texttt{TFG.tex} es el archivo maestro donde se agregan los capítulos necesarios para incluir en el trabajo. El archivo de clase \texttt{CEUTFG.cls}, por otro lado, requiere aún más precaución, y no se recomienda alterarlo sin tener conocimientos avanzados de \LaTeX.
+
+\section{Opciones de la plantilla}
+\label{sec:class-options}
+
+El primer comando del fichero \texttt{TFG.tex} es el comando \texttt{documentclass}, que carga la clase personalizada para esta plantilla. Esta clase permite personalizar el contenido y el aspecto final del documento a través de distintos parámetros opcionales que se pueden especificar. Las opciones disponibles se enumeran en el \autoref{tab:template-options}.
+
+{
+\setlength{\extrarowheight}{-1.75pt}
+\begin{xltabular}{\textwidth}{lX}
+\caption{Opciones de la clase \texttt{CEUTFG}.}
+\label{tab:template-options} \\
+%
+\toprule 
+\multicolumn{1}{l}{\textbf{Opción}} & \multicolumn{1}{l}{\textbf{Descripción}} \\ 
+\midrule
+\endfirsthead
+%
+\multicolumn{2}{c}%
+{{\textit{\bfseries Cuadro \thetable\ (continúa de la página anterior).}}} \\
+%
+\toprule 
+\multicolumn{1}{l}{\textbf{Opción}} & \multicolumn{1}{l}{\textbf{Descripción}} \\ 
+\midrule
+\endhead
+%
+\bottomrule
+\addlinespace[1mm]
+\multicolumn{2}{r}%
+{{\textit{Continúa en la siguiente página.}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\textbf{chapterstyle = OPT} & \textbf{Selección de un estilo de diseño de capítulo.} \\
+\multirow[t]{2}{*}{\footnotesize{\textit{classic, modern, fancy}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: chapterstyle = classic}} \\
+& \footnotesize{\textit{Esta opción modifica la apariencia del capítulo, incluyendo su título y estilo de numeración. Explora los estilos disponibles y aplica el que prefieras.}} \\[1.70em]
+
+\textbf{coverstyle = OPT} & \textbf{Elección de un estilo para la portada.} \\
+\multirow[t]{3}{*}{\footnotesize{\textit{classic, bw}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: coverstyle = classic}} \\
+& \footnotesize{\textit{classic $\rightarrow$ Coloca una portada en color azul.}} \\
+& \footnotesize{\textit{bw $\rightarrow$ Coloca una portada en blanco y negro.}} \\
+
+\textbf{docstage = OPT} & \textbf{Selección de una etapa para el documento.} \\
+\multirow[t]{3}{*}{\footnotesize{\textit{final, working}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: docstage = final}} \\
+& \footnotesize{\textit{final $\rightarrow$ Asume que esta es la versión final del documento.}} \\
+& \footnotesize{\textit{working $\rightarrow$ Asume que el documento está en progreso.}} \\[.3em]
+
+\textbf{media = OPT} & \textbf{Tipo de medio del proyecto.} \\
+\multirow[t]{3}{*}{\footnotesize{\textit{paper, screen}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: media = paper}} \\
+& \footnotesize{\textit{paper $\rightarrow$ Las páginas en blanco aparecerán entre secciones.}} \\
+& \footnotesize{\textit{screen $\rightarrow$ Las páginas en blanco no aparecerán entre secciones.}} \\[.3em]
+
+\textbf{linkcolor = OPT} & \textbf{Color de los hiperenlaces.} \\
+\multirow[t]{2}{*}{\footnotesize{\textit{color}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: linkcolor = blue (\#003CA3)}} \\
+& \footnotesize{\textit{Esta opción requiere un nombre de color válido. Consulta el manual del paquete  \texttt{xcolor} para seleccionar un color válido.}} \\[.3em]
+
+\textbf{bookprint = OPT} & \textbf{Para impresión de libros.} \\
+\multirow[t]{2}{*}{\footnotesize{\textit{true, false}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: bookprint = false}} \\
+& \footnotesize{\textit{Esta opción añade un margen de encuadernación en las páginas impares para permitir la impresión, ya que aumenta el margen izquierdo.}} \\[.3em]
+
+\textbf{aiacknowledgement = OPT} & \textbf{Reconocimiento de uso de IA.} \\
+\multirow[t]{2}{*}{\footnotesize{\textit{true, false}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: aiacknowledgement = true}} \\
+& \footnotesize{\textit{Esta opción añade una sección destinada a que el usuario inserte su reconocimiento del uso de IA.}} \\[.3em]
+
+\textbf{listprefix = OPT} & \textbf{Añadir un prefijo a LoF y LoT.} \\
+\multirow[t]{2}{*}{\footnotesize{\textit{true, false}}} & \footnotesize{\textit{$\Rightarrow$ Predeterminado: listprefix = false}} \\
+& \footnotesize{\textit{Esta opción añade el prefijo ``Figura'' o ``Tabla'' tanto a LoF como a LoT cuando está habilitada.}} \\
+\end{xltabular}
+}
+
+\section{Configuración de los metadatos}
+\label{sec:metadata}
+
+Después de definir las opciones de la clase del documento, hay que configurar algunos metadatos como el autor, el título, el director, etc. Dado que esta plantilla admite una amplia gama de opciones de metadatos, se proporciona un archivo dedicado para este propósito. El archivo \texttt{Metadata/Metadata.tex} enumera las variables de metadatos, con comentarios sobre si son obligatorias. Comenta las variables para omitirlas. El \autoref{tab:metadata} incluye todas las variables de metadatos, su comando GET y si son obligatorias. El comando GET recupera automáticamente la información de la variable almacenada.
+
+\begin{longtable}[c]{llc}
+\caption{Metadata variables within the template.}
+\label{tab:metadata} \\
+\toprule
+\textbf{Variable} & \textbf{Comando} & \textbf{Obligatorio} \\ \midrule
+\endfirsthead
+%
+\multicolumn{3}{c}%
+{{\textit{\bfseries Cuadro \thetable\ (continúa de la página anterior).}}} \\
+%
+\toprule
+\textbf{Variable} & \textbf{Comando} & \textbf{Obligatorio} \\ \midrule
+\endhead
+%
+\bottomrule
+%
+\addlinespace[1mm]
+\multicolumn{3}{r}%
+{{\textit{Continúa en la siguiente página.}}} \\
+\endfoot
+%
+\bottomrule
+%
+\endlastfoot
+%
+Título            & \verb|\GetTitle|         & $\checkmark$ \\
+Subtítulo         & \verb|\GetSubtitle|      & $\checkmark$ \\
+Universidad       & \verb|\GetUniversity|    & $\checkmark$ \\
+Escuela           & \verb|\GetSchool|        & $\checkmark$ \\
+Departamento       & \verb|\GetDepartment|    & $\checkmark$ \\
+Grado           & \verb|\GetDegree|        & $\checkmark$ \\
+Curso           & \verb|\GetCourse|        & -            \\
+Local y fecha   & \verb|\GetDate|          & $\checkmark$  \\ 
+Año académico    & \verb|\GetAcademicYear|  & $\checkmark$ \\ 
+Nombre del autor           & \verb|\GetFirstAuthor|        & $\checkmark$ \\ 
+Nombre del director                  & \verb|\GetSupervisor|        & $\checkmark$ \\ 
+Correo electrónico del director                & \verb|\GetSupervisorMail|    & $\checkmark$ \\ 
+Título y afiliación del director & \verb|\GetSupervisorTitle|   & $\checkmark$ \\ 
+Nombre del codirector                  & \verb|\GetCoSupervisor|       & - \\
+Correo electrónico del codirector                & \verb|\GetCoSupervisorMail|   & - \\
+Título y afiliación del codirector & \verb|\GetCoSupervisorTitle|  & - 
+\end{longtable}
+
+\section{Inserción de capítulos}
+
+Como ya se ha mencionado, para usar esta plantilla necesitas hacer tres cosas: establecer las opciones apropiadas en la clase del documento (ver \autoref{sec:class-options}), actualizar los metadatos del documento (ver \autoref{sec:metadata}) y crear e importar tus capítulos personalizados. Para crear e importar un capítulo personalizado basta con crear un archivo TeX en el directorio \texttt{Chapters} que siga la convención de nombres predefinida y después inclúyelo en el archivo principal usando el comando \verb|\include{Capítulo}|.
+
+\section{Comandos personalizados}
+
+Dentro de esta plantilla también hay disponibles algunos comandos personalizados para facilitar la elaboración del TFG. Por ejemplo, si estás escribiendo tu TFG y quieres agregar una nota de tarea, puedes insertar fácilmente un bloque con la opción \verb|todo|, de la siguiente manera: \verb|\begin{tarea}|. Esto insertará un bloque de tareas pendientes con un estilo similar a Markdown. Otras opciones disponibles son: \verb|consejo|, \verb|advertencia| y \verb|nota|. A continuación se muestra un ejemplo visual para cada uno.
+
+\vspace{.875em}
+\begin{tcbraster}[
+    raster columns=2, 
+    raster equal height, 
+    nobeforeafter, 
+    raster column skip=1cm
+]
+\begin{tarea}
+    Esto es un bloque de tareas pendientes.
+\end{tarea}
+\begin{consejo}
+    Esto es un bloque de consejo.
+\end{consejo}
+\end{tcbraster}
+
+\begin{tcbraster}[
+    raster columns=2, 
+    raster equal height, 
+    nobeforeafter, 
+    raster column skip=1cm
+]
+\begin{advertencia}
+    Esto es un bloque de advertencia.
+\end{advertencia}
+\begin{nota}
+    Esto es un bloque de nota.
+\end{nota}
+\end{tcbraster}
+\vspace{.875em}

@@ -1,0 +1,87 @@
+% Author: Alfredo Sánchez Alberca
+% Mail: asalber@ceu.es
+% Original Template: José Areia (https://github.com/joseareia/ipleiria-thesis)
+
+%%% Document Options %%%
+\documentclass[
+    language = spanish,
+    docstage = final,
+    media = paper,
+    bookprint = true,
+    linkcolor = red!45!black,
+    chapterstyle = classic,
+    coverstyle = classic,
+    aiacknowledgement = true,
+    listprefix = false
+]{CEUTFG}
+
+%%% Document Version %%%
+\DocumentVersion{1.0.0} % Required only if the 'docstage' is set to 'working'.
+
+%%% Document Metadata %%%
+\input{Metadata/Metadata}
+
+%%% Loading of Glossary and Acronyms %%%
+\makeglossaries
+\loadglsentries{Matter/05-Glossary}
+\loadglsentries[\acronymtype]{Matter/06-Acronyms}
+\loadglsentries[\symboltype]{Matter/07-Symbols}
+
+\begin{document}
+
+%%% Front Matter %%%
+\include{Matter/00-Cover}
+\include{Matter/01-Front-Page}
+
+%%% Copyright Statement %%%
+\include{Matter/02-Copyright}
+
+%%% Roman Numeration %%%
+\pagenumbering{roman}
+
+%%% Acknowledgements %%%
+\include{Matter/03-Acknowledgements}
+
+%%% Abstract %%%
+\include{Chapters/00-Abstract}
+
+%%% AI Acknowledgement %%%
+\include{Matter/04-AI}
+
+%%% Table of Contents, List of Figures and List of Tables %%%
+\bookmarktocentry\tableofcontents
+\listoffigures
+\listoftables
+
+%%% Print: Glossary and Acronyms %%%
+% \glossarytoc\printnormalglossary
+% \acronymtoc\printacronymglossary
+% \symboltoc\printsymbolglossary
+
+%%% Arabic Numeration %%%
+\pagenumbering{arabic}
+
+%%% Chapters (**Insert Yours Here**) %%%
+\include{Chapters/01-Introduccion}
+\include{Chapters/02-Estado-Arte}
+\include{Chapters/03-Guia-Uso}
+\include{Chapters/04-Latex-Tutorial}
+
+%%% Bibliography %%%
+\renewcommand{\refname}{Bibliografía}
+\printbibliography[title={\refname}, heading = bibintoc]
+
+%%% Appendices: Work that *YOU* Developed %%%
+\appendix
+\input{Matter/08-Appendices}
+\input{Chapters/Appendices/00-AppendixA}
+\input{Chapters/Appendices/01-AppendixB}
+
+%%% Annexes: Work that *YOU DID NOT* Develop %%%
+\input{Matter/09-Annexes}
+\input{Chapters/Annexes/00-AnnexA}
+
+%%% Back Page %%%
+\input{Matter/10-Back-Page}
+
+\end{document}
